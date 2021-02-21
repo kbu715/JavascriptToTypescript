@@ -18,3 +18,4 @@
 
 2. 명시적인 `any` 선언하기
     - `tsconfig.json` 파일에 `noImplicitAny` 값을 `true`로 추가
+    -
