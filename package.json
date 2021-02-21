@@ -1,0 +1,24 @@
+{
+  "name": "vanilla",
+  "version": "1.0.0",
+  "description": "js to ts",
+  "main": "array.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kbu715/JavascriptToTypescript.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kbu715/JavascriptToTypescript/issues"
+  },
+  "homepage": "https://github.com/kbu715/JavascriptToTypescript#readme",
+  "devDependencies": {
+    "typescript": "^4.1.5"
+  }
+}

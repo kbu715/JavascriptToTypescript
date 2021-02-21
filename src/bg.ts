@@ -1,12 +1,14 @@
+export {}
+
 const body = document.querySelector("body");
 
 const IMG_NUMBER = 3;
 
-function handleImgLoad(){
-    console.log('finished');
-}
+// function handleImgLoad(){
+//     console.log('finished');
+// }
 
-function paintImage(imgNumber){
+function paintImage(imgNumber: number): void{
     const image = new Image();
     image.src = `images/${imgNumber}.jpg`;
     image.classList.add('bgImage');
@@ -14,12 +16,12 @@ function paintImage(imgNumber){
     // image.addEventListener('loadend', handleImgLoad); //API에서 이 일을 한다면 이게 먹힐텐데 이건 안먹힘
 }
 
-function genRandom(){
+function genRandom(): number{
     const number = Math.ceil(Math.random() * IMG_NUMBER);
     return number;
 }
 
-function init(){
+function init(): void{
     const randomNumber = genRandom();
     paintImage(randomNumber);
 }

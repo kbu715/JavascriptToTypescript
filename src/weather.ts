@@ -1,11 +1,18 @@
-const weather = document.querySelector('.js-weather');
+export {}
+
+interface CoordsType {
+    latitude: number;
+    longitude: number;
+}
+
+const weather = document.querySelector('.js-weather') as HTMLSpanElement;
 
 const API_KEY = "8a873f8763125bdab97ae4df7e88bf92";
 
 const COORDS = 'coords';
 
 
-function getWeather(lat, lng){
+function getWeather(lat: number, lng: number): void{
     fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lng}&appid=${API_KEY}&units=metric`)
     .then(function(response){
         return response.json();
@@ -16,14 +23,14 @@ function getWeather(lat, lng){
     });
 }
 
-function saveCoords(coordsObj){
+function saveCoords(coordsObj: CoordsType): void{
     localStorage.setItem(COORDS, JSON.stringify(coordsObj));
 }
 
-function handleGeoSuccess(position){
+function handleGeoSuccess(position: GeolocationPosition): void{
     const latitude = position.coords.latitude;
     const longitude = position.coords.longitude;
-    const coordsObj = {
+    const coordsObj: CoordsType = {
         latitude,
         longitude
     };
@@ -31,27 +38,27 @@ function handleGeoSuccess(position){
     getWeather(latitude, longitude);
 }
 
-function handleGeoError(){
+function handleGeoError(): void{
     console.log('Cant access Geo location');
 }
 
-function askForCooards(){
+function askForCooards(): void{
     navigator.geolocation.getCurrentPosition(handleGeoSuccess, handleGeoError);
 }
 
-function loadCooards(){
+function loadCooards(): void{
     const loadedCooards = localStorage.getItem(COORDS);
     if(loadedCooards === null){
         askForCooards();
     } else {
-        const parseCoords = JSON.parse(loadedCooards);
+        const parseCoords: CoordsType = JSON.parse(loadedCooards);
         console.log(parseCoords);
         getWeather(parseCoords.latitude, parseCoords.longitude);
     }
 
 }
 
-function init(){
+function init(): void{
     loadCooards();
 }
 

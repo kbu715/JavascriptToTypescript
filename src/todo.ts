@@ -1,19 +1,26 @@
-const toDoForm = document.querySelector(".js-toDoForm"),
-    toDoInput = toDoForm.querySelector("input"),
-    toDoList = document.querySelector(".js-toDoList");
+export {}
+
+interface ToDoType {
+    text: string;
+    id: number;
+}
+
+const toDoForm = document.querySelector(".js-toDoForm") as HTMLFormElement,
+    toDoInput = toDoForm.querySelector("input") as HTMLInputElement,
+    toDoList = document.querySelector(".js-toDoList") as HTMLUListElement;
 
 const TODOS_LS = 'toDos';
 
-let toDos = [];
+let toDos: ToDoType[] = [];
 
 
 
-function deleteToDo(event){
+function deleteToDo(event: MouseEvent): void{
     
-    const btn = event.target;
-    const li = btn.parentNode;
+    const btn = event.target as Node;
+    const li = btn.parentNode as HTMLLIElement;
     toDoList.removeChild(li);
-    const cleanToDos = toDos.filter(function(toDo){
+    const cleanToDos = toDos.filter(function(toDo: ToDoType){
         return toDo.id !== parseInt(li.id); //li.id 가 문자열
     }); 
     console.log(cleanToDos);
@@ -21,11 +28,11 @@ function deleteToDo(event){
     saveToDos();
 }
 
-function saveToDos(){
+function saveToDos(): void{
     localStorage.setItem(TODOS_LS, JSON.stringify(toDos)); //자바스크립트는 local storage에 있는 모든 데이터를 string으로 저장하려고 한다.
 }
 
-function paintToDo(text){
+function paintToDo(text: string): void{
     const li = document.createElement("li");
     const delBtn = document.createElement("button");
     const span = document.createElement("span");
@@ -35,7 +42,7 @@ function paintToDo(text){
     span.innerText = text;
     li.appendChild(delBtn);
     li.appendChild(span);
-    li.id = newId;
+    li.id = newId.toString();
     toDoList.appendChild(li);
     const toDoObj = {
         text: text,
@@ -45,25 +52,25 @@ function paintToDo(text){
     saveToDos();
 }
 
-function handleSubmit(event){
+function handleSubmit(event: Event): void{
     event.preventDefault();
     const currentValue = toDoInput.value;
     paintToDo(currentValue);
     toDoInput.value = "";
 }
 
-function loadToDos(){
+function loadToDos(): void{
     const loadedToDos = localStorage.getItem(TODOS_LS);
     if(loadedToDos !== null){
-        const parsedToDos = JSON.parse(loadedToDos); //parse: 자바스크립트 object로 변환!!!
-        parsedToDos.forEach(toDo => {
+        const parsedToDos: ToDoType[] = JSON.parse(loadedToDos); //parse: 자바스크립트 object로 변환!!!
+        parsedToDos.forEach((toDo: ToDoType) => {
             paintToDo(toDo.text);
         });
     }
     console.log(toDos);
 }
 
-function init(){
+function init(): void{
     loadToDos();
     toDoForm.addEventListener("submit", handleSubmit)
 };

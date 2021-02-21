@@ -1,3 +1,5 @@
+export {}
+
 function print() {
     /*
         filter, includes, from을 사용해서 문자열 'e'가 포함된
