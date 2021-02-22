@@ -20,14 +20,14 @@
     - `tsconfig.json` 파일에 `noImplicitAny` 값을 `true`로 추가
     - 가능한 타입을 적용할 수 있는 모든 곳에 타입을 적용한다
         - 라이브러리를 쓰는 경우 DefinitelyTyped에서 @types 관련 라이브러리를 찾아 설치한다.
-        -테스트 코드가 통과하는지 확인
+        - 테스트 코드가 통과하는지 확인
 
 3. strict 모드 설정
 
 ```
 {
     "strict": true,
-    "strictNullChecks": true,
+    "strictNullChecks": true, 
     "strictFunctionTypes": true,
     "strictBindCallApply": true,
     "strictPropertyInitialization": true,
@@ -36,5 +36,35 @@
 }
 ```
 
-    - any로 되어있는 타입을 최대한 더 적절한 타입으로 변환.
-    - as와 같은 키워드를 최대한 사용하지 않도록 고민해서 변경한다.
+- any로 되어있는 타입을 최대한 더 적절한 타입으로 변환.
+- as와 같은 키워드를 최대한 사용하지 않도록 고민해서 변경한다.
+
+
+**"strictNullChecks": true**
+When strictNullChecks is true, null and undefined have their own distinct types and you’ll get a type error if you try to use them where a concrete value is expected.
+
+**"strictFunctionTypes": true**
+
+example)
+```
+function fn(x: string) {
+  console.log("Hello, " + x.toLowerCase());
+}
+
+type StringOrNumberFunc = (ns: string | number) => void;
+
+// Unsafe assignment is prevented
+let func: StringOrNumberFunc = fn;
+Type '(x: string) => void' is not assignable to type 'StringOrNumberFunc'.
+  Types of parameters 'x' and 'ns' are incompatible.
+    Type 'string | number' is not assignable to type 'string'.
+      Type 'number' is not assignable to type 'string'.
+```
+**"strictPropertyInitialization": true**
+When set to true, TypeScript will raise an error when a class property was declared but not set in the constructor.
+
+**"noImplicitThis": true**
+Raise error on ‘this’ expressions with an implied ‘any’ type.
+
+**"strictBindCallApply": true**
+When set, TypeScript will check that the built-in methods of functions call, bind, and apply are invoked with correct argument for the underlying function:
