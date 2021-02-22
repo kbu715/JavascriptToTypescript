@@ -1,8 +1,9 @@
 export {};
+import $ from './util';
 
-const form = document.querySelector('.js-form') as HTMLFormElement,
+const form = $<HTMLFormElement>('.js-form'),
   input = form.querySelector('input') as HTMLInputElement,
-  greeting = document.querySelector('.js-greetings') as HTMLHeadElement;
+  greeting = $<HTMLHeadElement>('.js-greetings');
 
 const USER_LS = 'currentUser',
   SHOWING_CN = 'showing'; //CN : CLASS NAME

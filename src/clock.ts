@@ -1,7 +1,8 @@
 export {};
+import $ from './util';
 
-const clockContainer = document.querySelector('.js-clock'),
-  clockTitle = clockContainer.querySelector('h1');
+const clockContainer = $<HTMLDivElement>('.js-clock'),
+  clockTitle = clockContainer.querySelector('h1') as HTMLHeadingElement;
 
 function getTime(): void {
   const date = new Date();

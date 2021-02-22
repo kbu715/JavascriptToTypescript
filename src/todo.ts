@@ -1,13 +1,14 @@
 export {};
+import $ from './util';
 
 interface ToDoType {
   text: string;
   id: number;
 }
 
-const toDoForm = document.querySelector('.js-toDoForm') as HTMLFormElement,
+const toDoForm = $<HTMLFormElement>('.js-toDoForm'),
   toDoInput = toDoForm.querySelector('input') as HTMLInputElement,
-  toDoList = document.querySelector('.js-toDoList') as HTMLUListElement;
+  toDoList = $<HTMLUListElement>('.js-toDoList');
 
 const TODOS_LS = 'toDos';
 

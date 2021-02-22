@@ -1,6 +1,6 @@
 export {};
-
-const body = document.querySelector('body');
+import $ from './util';
+const body = $<HTMLBodyElement>('body');
 
 const IMG_NUMBER = 3;
 
@@ -12,7 +12,7 @@ function paintImage(imgNumber: number): void {
   const image = new Image();
   image.src = `images/${imgNumber}.jpg`;
   image.classList.add('bgImage');
-  body.appendChild(image);
+  body?.appendChild(image);
   // image.addEventListener('loadend', handleImgLoad); //API에서 이 일을 한다면 이게 먹힐텐데 이건 안먹힘
 }
 

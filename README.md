@@ -18,4 +18,23 @@
 
 2. 명시적인 `any` 선언하기
     - `tsconfig.json` 파일에 `noImplicitAny` 값을 `true`로 추가
-    -
+    - 가능한 타입을 적용할 수 있는 모든 곳에 타입을 적용한다
+        - 라이브러리를 쓰는 경우 DefinitelyTyped에서 @types 관련 라이브러리를 찾아 설치한다.
+        -테스트 코드가 통과하는지 확인
+
+3. strict 모드 설정
+
+```
+{
+    "strict": true,
+    "strictNullChecks": true,
+    "strictFunctionTypes": true,
+    "strictBindCallApply": true,
+    "strictPropertyInitialization": true,
+    "noImplicitThis": true,
+    "alwaysStrict": true,
+}
+```
+
+    - any로 되어있는 타입을 최대한 더 적절한 타입으로 변환.
+    - as와 같은 키워드를 최대한 사용하지 않도록 고민해서 변경한다.

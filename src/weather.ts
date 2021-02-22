@@ -1,11 +1,12 @@
 export {};
+import $ from './util';
 
 interface CoordsType {
   latitude: number;
   longitude: number;
 }
 
-const weather = document.querySelector('.js-weather') as HTMLSpanElement;
+const weather = $<HTMLSpanElement>('.js-weather');
 
 const API_KEY = '8a873f8763125bdab97ae4df7e88bf92';
 
